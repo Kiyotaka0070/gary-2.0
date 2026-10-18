@@ -1,0 +1,1095 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#21150f">
+<title>Gary |  🐾</title>
+
+<style>
+:root {
+  --bg: #21150f;
+  --panel: #302117;
+  --cream: #fff2df;
+  --muted: #d8bda4;
+  --orange: #e99a51;
+  --gold: #ffc989;
+  --line: #ffffff20;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.65;
+}
+
+button, textarea { font: inherit; }
+
+button { cursor: pointer; }
+
+button:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+button:disabled { opacity: .35; cursor: default; }
+
+.hidden { display: none !important; }
+
+.wrap {
+  width: min(1150px, 94%);
+  margin: auto;
+}
+
+h1, h2, h3 { line-height: 1.2; }
+
+h1 {
+  font-size: clamp(3.2rem, 9vw, 6rem);
+  margin: 8px 0;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  margin: 10px 0;
+}
+
+p { color: var(--muted); }
+
+button {
+  transition: background .2s, opacity .2s, transform .2s;
+}
+
+button:hover { transform: translateY(-1px); }
+
+.primary, .secondary {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 11px 17px;
+  background: #39271b;
+  color: var(--cream);
+}
+
+.primary {
+  background: linear-gradient(135deg, #ffc47e, #d87935);
+  color: #28170d;
+  border: none;
+  font-weight: bold;
+}
+
+.primary:hover { background: #ffd19d; }
+.secondary:hover { background: #513723; }
+
+.eyebrow {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: .17em;
+  font: 700 .68rem Arial, sans-serif;
+}
+
+.small {
+  font: .76rem Arial, sans-serif;
+  color: var(--muted);
+}
+
+/* PORTADA */
+
+.cover {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 35px 15px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 40%, #8a502c44, transparent 55%),
+    linear-gradient(150deg, #120c08, #382216 58%, #17100c);
+}
+
+.cover-inner {
+  width: min(680px, 100%);
+  position: relative;
+  z-index: 1;
+}
+
+.cover-frame {
+  width: min(300px, 72vw);
+  aspect-ratio: 4 / 5;
+  margin: 0 auto 22px;
+  padding: 6px;
+  border: 1px solid #ffc98988;
+  border-radius: 155px 155px 18px 18px;
+  background: #ffc98910;
+  box-shadow: 0 0 65px #e99a5122;
+  overflow: hidden;
+}
+
+.cover-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  background: #493020;
+}
+
+.cover-symbol {
+  position: absolute;
+  color: #ffc98955;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.cover-symbol.a { top: 13%; left: 12%; }
+.cover-symbol.b { right: 12%; bottom: 16%; }
+.cover-symbol.c { right: 17%; top: 18%; font-size: 9px; }
+
+/* PRESENTACIÓN */
+
+#presentation {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 8px 0;
+  background:
+    radial-gradient(ellipse at 50% 15%, #75452624, transparent 55%),
+    #17100c;
+}
+
+#presentation .wrap { width: min(1500px, 98%); }
+
+.presentation-head {
+  text-align: center;
+  margin: 0 auto 5px;
+}
+
+.presentation-head h2 {
+  font-size: clamp(1.15rem, 2.5vw, 1.7rem);
+  margin: 3px 0;
+}
+
+.presentation-head p {
+  font-size: .75rem;
+  margin: 2px 0;
+}
+
+.stage { padding: 4px; }
+
+.photo-stage {
+  position: relative;
+  width: 100%;
+  height: 68vh;
+  height: 68dvh;
+  min-height: 230px;
+  max-height: 850px;
+  overflow: hidden;
+  background: #100b08;
+  border-radius: 10px;
+}
+
+#slideImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 850ms ease, transform 7s ease;
+}
+
+#slideImage.fade-out {
+  opacity: 0;
+  transform: scale(1.025);
+}
+
+#slideImage.fade-in {
+  animation: photoReveal 1.1s ease both;
+}
+
+@keyframes photoReveal {
+  from { opacity: 0; transform: scale(1.025); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.caption-area {
+  max-width: 850px;
+  margin: 9px auto 3px;
+  text-align: center;
+  padding: 0 12px;
+}
+
+#slideCaption {
+  color: var(--gold);
+  font-size: clamp(1rem, 2.2vw, 1.45rem);
+  line-height: 1.4;
+  margin: 0 auto 4px;
+  transition: opacity .5s ease;
+}
+
+#slideCaption.caption-fade { opacity: 0; }
+
+#slideCount {
+  font: .67rem Arial, sans-serif;
+  color: var(--muted);
+}
+
+.progress {
+  height: 3px;
+  width: min(480px, 75%);
+  background: #ffffff18;
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 8px auto;
+}
+
+#progressBar {
+  height: 100%;
+  width: 0;
+  background: var(--gold);
+  transition: width .3s;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+#presentation .controls button {
+  font: .74rem Arial, sans-serif;
+  padding: 7px 10px;
+  background: #ffffff0c;
+  border: 1px solid #ffffff1b;
+  color: var(--cream);
+}
+
+#presentation .controls button:hover {
+  background: #ffffff22;
+}
+
+#presentation .small {
+  text-align: center;
+  font-size: .67rem;
+  margin: 4px 0;
+}
+
+/* CARTA */
+
+.section { padding: 60px 0; }
+
+.section-head {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 26px;
+}
+
+.panel {
+  background: linear-gradient(145deg, #39281d, #281a13);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: clamp(17px, 4vw, 35px);
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  min-height: 260px;
+  resize: vertical;
+  background: #1c120d;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--cream);
+  padding: 16px;
+  line-height: 1.9;
+}
+
+.letter-note {
+  color: var(--muted);
+  font-size: .88rem;
+  margin-top: 20px;
+}
+
+/* GALERÍA */
+
+.gallery-tools {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 25px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.photo-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+}
+
+.photo-open {
+  display: block;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  color: var(--cream);
+  background: #140d09;
+  text-align: left;
+}
+
+.photo-open img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: #493020;
+}
+
+.photo-info { padding: 12px 13px 5px; }
+
+.photo-info strong {
+  font-weight: normal;
+  color: var(--gold);
+}
+
+.photo-info p {
+  font-size: .87rem;
+  line-height: 1.5;
+  margin: 5px 0 9px;
+}
+
+.favorite {
+  margin: 0 12px 12px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #21150f;
+  color: var(--cream);
+  font: .78rem Arial, sans-serif;
+}
+
+.favorite.active {
+  color: #ffb1a0;
+  border-color: #ffb1a088;
+}
+
+/* VISOR */
+
+.modal {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  background: #080503f5;
+}
+
+.modal-inner {
+  width: min(1000px, 100%);
+  text-align: center;
+}
+
+#modalImage {
+  width: 100%;
+  max-height: 74vh;
+  object-fit: contain;
+  background: #100b08;
+  border-radius: 10px;
+}
+
+.modal-controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.modal-controls button {
+  font-size: .78rem;
+  padding: 9px 12px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+
+#toast {
+  position: fixed;
+  z-index: 200;
+  left: 50%;
+  bottom: 15px;
+  transform: translateX(-50%);
+  background: var(--cream);
+  color: #21150f;
+  padding: 10px 16px;
+  border-radius: 99px;
+  width: max-content;
+  max-width: 92%;
+  font: .82rem Arial, sans-serif;
+  box-shadow: 0 5px 25px #0005;
+}
+
+.hidden { display: none !important; }
+
+@media (max-width: 700px) {
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .section { padding: 45px 0; }
+  .photo-stage { height: 62vh; height: 62dvh; }
+  #presentation .wrap { width: 100%; }
+}
+
+@media (max-width: 430px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+  .photo-stage { height: 57vh; height: 57dvh; }
+  #presentation .controls { gap: 4px; }
+  #presentation .controls button {
+    padding: 7px 8px;
+    font-size: .69rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PORTADA -->
+<section class="cover" id="cover">
+  <span class="cover-symbol a">✦</span>
+  <span class="cover-symbol b">♡</span>
+  <span class="cover-symbol c">✧</span>
+
+  <div class="cover-inner">
+    <div class="cover-frame">
+      <img id="coverImage"
+           src="fotos/gary-portada.jpg"
+           alt="Fotografía de Gary">
+    </div>
+
+    <div class="eyebrow">Un lugar para los recuerdos</div>
+    <h1>Gary</h1>
+    <p>
+      No eras solamente parte de la casa.
+      Eras parte de la familia.
+    </p>
+
+    <button class="primary" id="startButton">
+      ▶ 
+    </button>
+    <p class="small"></p>
+  </div>
+</section>
+
+<!-- PRESENTACIÓN -->
+<section id="presentation" class="hidden">
+  <div class="wrap">
+    <header class="presentation-head">
+      <div class="eyebrow">Con todo el cariño del mundo · 🐾</div>
+      <h2>Gary</h2>
+      <p>Una fotografía, una palabra, un recuerdo.</p>
+    </header>
+
+    <div class="stage">
+      <div class="photo-stage">
+        <img id="slideImage" src="fotos/gary-01.jpg" alt="Fotografía de Gary">
+      </div>
+
+      <div class="caption-area">
+        <p id="slideCaption">Tu lugar en el corazón permanece.</p>
+        <div id="slideCount"></div>
+      </div>
+
+      <div class="progress"><div id="progressBar"></div></div>
+
+      <div class="controls">
+        <button class="secondary" id="previousSlide">‹ Anterior</button>
+        <button class="secondary" id="pauseButton">Ⅱ Pausar</button>
+        <button class="secondary" id="nextSlide">Siguiente ›</button>
+      </div>
+
+      <div class="controls">
+        <button class="secondary" id="musicButton">♫ Silenciar</button>
+        <button class="secondary" id="finishButton">Terminar</button>
+        <button class="secondary" id="fullscreenButton">⛶ Pantalla completa</button>
+      </div>
+
+      <p class="small">
+       
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CARTA FINAL -->
+<section class="section hidden" id="closing">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Para Jazmín, con cariño</div>
+      <h2>Una carta para Gary 🧡</h2>
+      <p>
+        Porque hay vínculos que merecen ser recordados
+        con la misma ternura con la que fueron vividos.
+      </p>
+    </div>
+
+    <div class="panel">
+      <label class="eyebrow" for="letterText"></label>
+      <textarea id="letterText" spellcheck="true">Querido Gary:
+
+      Querido Gary:
+
+Ocupaste un lugar en su corazón: fuiste una compañía, una ternura y una presencia que formaba parte de su día a día.
+Para Jazmín, no eras solamente un gatito, eras su bebé, alguien a quien cuidar, proteger y querer con amor. En ti también encontró compañía y consuelo, eras parte de su mundo y de su hogar. Tu ausencia dejó un vacío muy grande, cuando alguien tan querido ya no está, el cariño no desaparece de un día para otro, ni la costumbre de tenerlo cerca ni todo lo que significaba su presencia. No hay que fingir que no duele ni encontrar palabras para explicar lo que sientes. Lo que viviste con Gary fue importante, tu tristeza no disminuye el amor que le diste; habla de un vínculo que tiene un lugar profundo en tu vida Gabi.
+Espero que estas fotografías puedan acompañarte con ternura, no para pedirte que lo olvides, sino para que recuerdes todo lo que compartiste con él forme parte de tu historia.
+Gary fue amado, fue importante en tu vida, fue tu familia, y aunque hoy su ausencia duela, el cariño con el que lo recuerdas merece ser tratado con respeto y amor.
+Con cariño, para Gary y para quien siempre tendrá un lugar para él en tu corazón.
+
+Gary, siempre recordado. 🐾  🐾</textarea>
+
+      <div class="controls">
+        <button class="primary" id="saveLetter">Guardar carta</button>
+        <button class="secondary" id="toAlbum">Entrar al álbum</button>
+        <button class="secondary" id="replayButton">↻ Repetir presentación</button>
+      </div>
+
+      <p class="letter-note">
+      </p>
+      <p class="small">
+        
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ÁLBUM NORMAL -->
+<main id="album" class="hidden">
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Un pequeño universo de recuerdos</div>
+        <h2>El álbum de Gary 🐾</h2>
+        <p>
+          Puedes mirar cada fotografía a tu ritmo,
+          leer sus frases y guardar tus favoritas.
+        </p>
+      </div>
+
+      <div class="gallery-tools">
+        <button class="secondary" id="allPhotos">Todas las fotos</button>
+        <button class="secondary" id="favoritesOnly">♥ Ver favoritas</button>
+        <button class="secondary" id="playAgain">▶ Ver presentación</button>
+      </div>
+
+      <div id="gallery" class="gallery-grid"></div>
+      <p id="emptyFavorites" class="small hidden" style="text-align:center">
+        Aún no hay favoritas marcadas.
+      </p>
+    </div>
+  </section>
+  <footer> 🐾</footer>
+</main>
+
+<!-- VISOR -->
+<div id="photoModal" class="modal hidden"
+     role="dialog" aria-modal="true" aria-label="Fotografía ampliada">
+  <div class="modal-inner">
+    <img id="modalImage" src="" alt="Fotografía ampliada de Gary">
+    <p id="modalCaption"></p>
+    <div class="modal-controls">
+      <button class="secondary" id="modalPrevious">‹ Anterior</button>
+      <button class="secondary" id="modalFavorite">♡ Favorita</button>
+      <button class="secondary" id="modalNext">Siguiente ›</button>
+      <button class="primary" id="modalClose">Cerrar ✕</button>
+    </div>
+    <p class="small">Pulsa Escape para cerrar.</p>
+  </div>
+</div>
+
+<div id="toast" class="hidden" role="status" aria-live="polite"></div>
+
+<audio id="backgroundMusic" src="musica/melodia.mp3" loop preload="none"></audio>
+
+<script>
+(() => {
+  "use strict";
+
+  const TOTAL = 33;
+  const SLIDE_TIME = 9000;
+  const FAVORITES_KEY = "gary-favorites";
+  const LETTER_KEY = "gary-letter";
+
+  const $ = id => document.getElementById(id);
+
+  const cover = $("cover");
+  const presentation = $("presentation");
+  const closing = $("closing");
+  const album = $("album");
+  const audio = $("backgroundMusic");
+  const modal = $("photoModal");
+
+  /*
+   * FRASES EDITABLES:
+   * Una frase para cada foto, en el mismo orden.
+   * Puedes cambiar cualquier texto sin modificar la lógica.
+   */
+  const captions = [
+    "No eras solamente una mascota. Eras un miembro de la familia",
+    "Fuiste un bebé para ella, alguien a quien cuidar con todo el corazón.",
+    "A veces, el amor más grande llega en un cuerpo pequeño.",
+    "Cuidarte no era una obligación sin sentido: era una forma de quererte.",
+    "Con tu presencia había una compañía que no necesitaba explicaciones.",
+    "Hay silencios que se sienten cuando falta quien solía acompañarnos.",
+    "Para el mundo podías ser un gatito; para ell eras un universo entero.",
+    "No todas las familias se parecen. Algunas también tienen patitas y bigotes.",
+    "Te convertiste en un hogar para ella.",
+    "El cariño cotidiano deja huellas que no siempre se ven, pero se sienten.",
+    "A veces, un compañero pequeño sostiene el corazón más de lo que imaginamos.",
+    "No hacía falta decir nada para sentir que no estabas sola.",
+    "Querer también era preocuparse por ti, protegerte y desear que estuvieras bien.",
+    "Ese instinto de cuidar nació del amor que te tenía.",
+    "Hay responsabilidades que no pesan cuando se llevan con cariño.",
+    "Tu presencia formó parte de su vida familiar, de sus rutinas y de su mundo.",
+    "Cuando alguien es comsiderado familia, su ausencia no se puede medir desde afuera.",
+    "El vacío que dejaste habla de todo el espacio que ocupabas en su vida.",
+    "No tiene que dejar de extrañarte para demostrar que sigue adelante.",
+    "Hay días en los que recordar puede doler; no hay nada malo en necesitar tiempo.",
+    "El duelo también es aprender a vivir con un amor que ya no puede abrazarse.",
+    "No hay una fecha exacta para que el corazón deje de sentir una ausencia.",
+    "Su cariño por ti no necesita justificarse ante nadie.",
+    "La sensibilidad con la que te recuerda también forma parte de su manera de querer.",
+    "A veces, los objetos que abrazamos nos ofrecen un pequeño lugar seguro.",
+    "No hay nada ridículo en encontrar consuelo en aquello que nos da ternura.",
+    "Ser tranquila no significa sentir poco; hay corazones profundos que hablan bajito.",
+    "Ser trabajadora, leal y fuerte no significa tener que lidiar con todo siempre.",
+    "También mereces descansar, reír, estar a solas y cuidar de tú propio corazón.",
+    "El humor puede iluminar un día, y las lágrimas también merecen su espacio.",
+    "Gary, fuiste querido por quien eras, no por lo que podías dar a cambio.",
+    "Lo que compartieron fue suyo: un vínculo único que nadie más necesita medir.",
+    "No se trata de olvidarte. Se trata de poder recordarte, con amor."
+  ];
+
+  const photos = Array.from({ length: TOTAL }, (_, i) => {
+    const n = String(i + 1).padStart(2, "0");
+    return {
+      src: `fotos/gary-${n}.jpg`,
+      title: `Recuerdo ${n}`,
+      caption: captions[i]
+    };
+  });
+
+  let current = 0;
+  let timer = null;
+  let playing = false;
+  let favoritesView = false;
+  let modalIndex = 0;
+  let toastTimer = null;
+  let changingPhoto = false;
+
+  function toast(message) {
+    $("toast").textContent = message;
+    $("toast").classList.remove("hidden");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => $("toast").classList.add("hidden"), 2800);
+  }
+
+  function showSection(target) {
+    [cover, presentation, closing, album].forEach(el => el.classList.add("hidden"));
+    target.classList.remove("hidden");
+    window.scrollTo(0, 0);
+  }
+
+  function fallbackImage(img, path) {
+    img.onerror = null;
+    img.src = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
+      `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600">
+        <rect width="100%" height="100%" fill="#39271b"/>
+        <text x="50%" y="44%" text-anchor="middle" font-size="65" fill="#ffc989">🐾</text>
+        <text x="50%" y="59%" text-anchor="middle" font-family="Arial" font-size="22" fill="#fff2df">Foto no encontrada</text>
+        <text x="50%" y="67%" text-anchor="middle" font-family="Arial" font-size="15" fill="#d8bda4">${path}</text>
+      </svg>`
+    );
+    img.alt = "No se encontró la imagen: " + path;
+  }
+
+  function setImage(img, photo) {
+    img.onerror = () => fallbackImage(img, photo.src);
+    img.src = photo.src;
+    img.alt = photo.title;
+  }
+
+  function renderSlide() {
+    const photo = photos[current];
+    const img = $("slideImage");
+    const caption = $("slideCaption");
+
+    caption.classList.add("caption-fade");
+    img.classList.add("fade-out");
+    changingPhoto = true;
+
+    // El fundido de salida termina antes de cambiar la imagen.
+    setTimeout(() => {
+      setImage(img, photo);
+      caption.textContent = photo.caption;
+      $("progressBar").style.width = `${((current + 1) / TOTAL) * 100}%`;
+
+      img.classList.remove("fade-out");
+      img.classList.remove("fade-in");
+
+      // Reiniciar la animación de entrada.
+      void img.offsetWidth;
+      img.classList.add("fade-in");
+      caption.classList.remove("caption-fade");
+
+      $("previousSlide").disabled = current === 0;
+      $("nextSlide").textContent =
+        current === TOTAL - 1 ? "Ver cierre ›" : "Siguiente ›";
+
+      changingPhoto = false;
+    }, 420);
+  }
+
+  function stopTimer() {
+    if (timer !== null) clearInterval(timer);
+    timer = null;
+  }
+
+  function startTimer() {
+    stopTimer();
+    if (!playing) return;
+
+    timer = setInterval(() => {
+      if (current < TOTAL - 1) {
+        current++;
+        renderSlide();
+      } else {
+        stopTimer();
+        playing = false;
+        showClosing();
+      }
+    }, SLIDE_TIME);
+  }
+
+  async function requestFullscreen() {
+    if (document.fullscreenElement) return;
+
+    try {
+      if (document.documentElement.requestFullscreen) {
+        await document.documentElement.requestFullscreen();
+      }
+    } catch {
+      toast("Pantalla completa no disponible; puedes continuar normalmente.");
+    }
+  }
+
+  async function startMusic() {
+    try {
+      await audio.play();
+      $("musicButton").textContent = audio.muted ? "♫ Activar sonido" : "♫ Silenciar";
+    } catch {
+      toast("No se pudo iniciar la música. Revisa musica/melodia.mp3.");
+    }
+  }
+
+  async function startPresentation() {
+    stopTimer();
+    current = 0;
+    playing = true;
+    showSection(presentation);
+    renderSlide();
+
+    // El navegador requiere una interacción del usuario para solicitarlo.
+    await requestFullscreen();
+    await startMusic();
+
+    $("pauseButton").textContent = "Ⅱ Pausar";
+    startTimer();
+  }
+
+  function showClosing() {
+    stopTimer();
+    playing = false;
+    showSection(closing);
+  }
+
+  function togglePause() {
+    if (!closing.classList.contains("hidden")) return;
+
+    if (playing) {
+      playing = false;
+      stopTimer();
+      $("pauseButton").textContent = "▶ Continuar";
+    } else {
+      playing = true;
+      $("pauseButton").textContent = "Ⅱ Pausar";
+      startTimer();
+    }
+  }
+
+  function nextSlide() {
+    if (current < TOTAL - 1) {
+      current++;
+      renderSlide();
+      if (playing) startTimer();
+    } else {
+      showClosing();
+    }
+  }
+
+  function previousSlide() {
+    if (current > 0) {
+      current--;
+      renderSlide();
+      if (playing) startTimer();
+    }
+  }
+
+  function readFavorites() {
+    try {
+      const values = JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
+      return new Set(values.filter(n => Number.isInteger(n) && n >= 0 && n < TOTAL));
+    } catch {
+      return new Set();
+    }
+  }
+
+  let favorites = readFavorites();
+
+  function saveFavorites() {
+    try {
+      localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites]));
+    } catch {
+      toast("No se pudieron guardar las favoritas en este navegador.");
+    }
+  }
+
+  function toggleFavorite(index) {
+    if (favorites.has(index)) favorites.delete(index);
+    else favorites.add(index);
+
+    saveFavorites();
+    renderGallery();
+
+    if (!modal.classList.contains("hidden")) updateModal();
+  }
+
+  function renderGallery() {
+    const gallery = $("gallery");
+    gallery.replaceChildren();
+
+    const visiblePhotos = photos
+      .map((photo, index) => ({ ...photo, index }))
+      .filter(photo => !favoritesView || favorites.has(photo.index));
+
+    $("emptyFavorites").classList.toggle("hidden", visiblePhotos.length !== 0);
+
+    visiblePhotos.forEach(photo => {
+      const card = document.createElement("article");
+      card.className = "photo-card";
+
+      const open = document.createElement("button");
+      open.className = "photo-open";
+      open.type = "button";
+      open.setAttribute("aria-label", `Ampliar ${photo.title}`);
+
+      const img = document.createElement("img");
+      img.loading = "lazy";
+      setImage(img, photo);
+      open.appendChild(img);
+      open.addEventListener("click", () => openModal(photo.index));
+
+      const info = document.createElement("div");
+      info.className = "photo-info";
+
+      const title = document.createElement("strong");
+      title.textContent = photo.title;
+
+      const caption = document.createElement("p");
+      caption.textContent = photo.caption;
+
+      info.append(title, caption);
+
+      const fav = document.createElement("button");
+      fav.className = "favorite" + (favorites.has(photo.index) ? " active" : "");
+      fav.type = "button";
+      fav.textContent = favorites.has(photo.index) ? "♥ Favorita" : "♡ Marcar favorita";
+      fav.setAttribute("aria-pressed", String(favorites.has(photo.index)));
+      fav.addEventListener("click", () => toggleFavorite(photo.index));
+
+      card.append(open, info, fav);
+      gallery.appendChild(card);
+    });
+  }
+
+  function openModal(index) {
+    modalIndex = index;
+    updateModal();
+    modal.classList.remove("hidden");
+    $("modalClose").focus();
+  }
+
+  function closeModal() {
+    modal.classList.add("hidden");
+  }
+
+  function updateModal() {
+    const photo = photos[modalIndex];
+    setImage($("modalImage"), photo);
+    $("modalCaption").textContent =
+      `${photo.title} · ${photo.caption} (${modalIndex + 1} de ${TOTAL})`;
+
+    $("modalPrevious").disabled = modalIndex === 0;
+    $("modalNext").disabled = modalIndex === TOTAL - 1;
+    $("modalFavorite").textContent = favorites.has(modalIndex)
+      ? "♥ Quitar favorita"
+      : "♡ Marcar favorita";
+  }
+
+  function enterAlbum() {
+    stopTimer();
+    playing = false;
+    renderGallery();
+    showSection(album);
+  }
+
+  $("startButton").addEventListener("click", startPresentation);
+  $("pauseButton").addEventListener("click", togglePause);
+  $("previousSlide").addEventListener("click", previousSlide);
+  $("nextSlide").addEventListener("click", nextSlide);
+  $("finishButton").addEventListener("click", showClosing);
+
+  $("musicButton").addEventListener("click", async () => {
+    if (audio.paused) {
+      await startMusic();
+    } else {
+      audio.muted = !audio.muted;
+      $("musicButton").textContent = audio.muted ? "♫ Activar sonido" : "♫ Silenciar";
+    }
+  });
+
+  $("fullscreenButton").addEventListener("click", async () => {
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+      } else {
+        await requestFullscreen();
+      }
+    } catch {
+      toast("No se pudo cambiar el modo de pantalla completa.");
+    }
+  });
+
+  document.addEventListener("fullscreenchange", () => {
+    $("fullscreenButton").textContent = document.fullscreenElement
+      ? "⛶ Salir de pantalla completa"
+      : "⛶ Pantalla completa";
+  });
+
+  $("saveLetter").addEventListener("click", () => {
+    try {
+      localStorage.setItem(LETTER_KEY, $("letterText").value);
+      toast("Carta guardada en este dispositivo.");
+    } catch {
+      toast("No se pudo guardar. Copia el texto para conservarlo.");
+    }
+  });
+
+  $("toAlbum").addEventListener("click", enterAlbum);
+  $("replayButton").addEventListener("click", startPresentation);
+  $("playAgain").addEventListener("click", startPresentation);
+
+  $("allPhotos").addEventListener("click", () => {
+    favoritesView = false;
+    renderGallery();
+  });
+
+  $("favoritesOnly").addEventListener("click", () => {
+    favoritesView = true;
+    renderGallery();
+  });
+
+  $("modalClose").addEventListener("click", closeModal);
+
+  $("modalPrevious").addEventListener("click", () => {
+    if (modalIndex > 0) {
+      modalIndex--;
+      updateModal();
+    }
+  });
+
+  $("modalNext").addEventListener("click", () => {
+    if (modalIndex < TOTAL - 1) {
+      modalIndex++;
+      updateModal();
+    }
+  });
+
+  $("modalFavorite").addEventListener("click", () => toggleFavorite(modalIndex));
+
+  modal.addEventListener("click", event => {
+    if (event.target === modal) closeModal();
+  });
+
+  document.addEventListener("keydown", event => {
+    if (modal.classList.contains("hidden")) return;
+
+    if (event.key === "Escape") closeModal();
+
+    if (event.key === "ArrowRight" && modalIndex < TOTAL - 1) {
+      modalIndex++;
+      updateModal();
+    }
+
+    if (event.key === "ArrowLeft" && modalIndex > 0) {
+      modalIndex--;
+      updateModal();
+    }
+  });
+
+  audio.addEventListener("error", () => {
+    $("musicButton").textContent = "♫ Música no disponible";
+  });
+
+  $("coverImage").addEventListener("error", function () {
+    fallbackImage(this, "fotos/gary-portada.jpg");
+  });
+
+  try {
+    const savedLetter = localStorage.getItem(LETTER_KEY);
+    if (savedLetter !== null) $("letterText").value = savedLetter;
+  } catch {}
+
+  renderGallery();
+})();
+</script>
+</body>
+</html>
